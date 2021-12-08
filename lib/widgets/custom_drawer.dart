@@ -19,13 +19,18 @@ Widget customDrawer(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                ClipRRect(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(60.0),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15.0,
                   ),
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    height: 100,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(60.0),
+                    ),
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      height: 100,
+                    ),
                   ),
                 ),
                 Padding(

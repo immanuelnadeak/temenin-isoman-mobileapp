@@ -33,7 +33,7 @@ class AppTheme{
     ),
     headline5: GoogleFonts.roboto(
       fontSize: 23,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
     ),
     headline6: GoogleFonts.roboto(
       fontSize: 19,

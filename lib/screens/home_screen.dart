@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:temenin_isoman_mobileapp/widgets/member_card.dart';
+import 'package:temenin_isoman_mobileapp/widgets/module_card.dart';
 import 'package:tips_and_tricks/common/styles.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -34,11 +36,17 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ),
-        // drawer: customDrawer(context),
-        body: const Center(
-          child: Text(
-            'My Page!',
-          ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  category(context),
+                ],
+              ),
+            ),
+            memberCard(context),
+          ],
         ),
       ),
     );
