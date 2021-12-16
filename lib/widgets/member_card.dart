@@ -56,7 +56,7 @@ Widget memberCard(BuildContext context) {
             _memberTile(
               context,
               "https://csui2020.github.io/static/img/buku_angkatan/KH24.jpg",
-              "Immanuel Gerald Ronaldo Nadea",
+              "Immanuel Gerald Ronaldo Nadeak",
               "Emergency Contacs",
             ),
             _memberTile(
