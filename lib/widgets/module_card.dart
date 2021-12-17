@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temenin_isoman_mobileapp/common/styles.dart';
-import 'package:temenin_isoman_mobileapp/screens/home_screen.dart';
+import 'package:temenin_isoman_mobileapp/screens/main_screen.dart';
 import 'package:tips_and_tricks/main.dart';
 
 Widget category(BuildContext context) {
@@ -42,7 +42,7 @@ Widget category(BuildContext context) {
               Icons.bed,
               const Color(0xfffa8c73),
               const Color(0xfffa9881),
-              HomeScreen.routeName,
+              MainScreen.routeName,
               context,
             ),
             _categoryCard(
@@ -50,7 +50,7 @@ Widget category(BuildContext context) {
               Icons.checklist,
               const Color(0xfffa8c73),
               const Color(0xfffa9881),
-              HomeScreen.routeName,
+              MainScreen.routeName,
               context,
             ),
             _categoryCard(
@@ -58,7 +58,7 @@ Widget category(BuildContext context) {
               Icons.sick_outlined,
               const Color(0xfffa8c73),
               const Color(0xfffa9881),
-              HomeScreen.routeName,
+              MainScreen.routeName,
               context,
             ),
             _categoryCard(
@@ -66,7 +66,7 @@ Widget category(BuildContext context) {
               Icons.warning,
               const Color(0xfffa8c73),
               const Color(0xfffa9881),
-              HomeScreen.routeName,
+              MainScreen.routeName,
               context,
             ),
             _categoryCard(
@@ -74,7 +74,7 @@ Widget category(BuildContext context) {
               Icons.note_rounded,
               const Color(0xfffa8c73),
               const Color(0xfffa9881),
-              HomeScreen.routeName,
+              MainScreen.routeName,
               context,
             ),
             _categoryCard(

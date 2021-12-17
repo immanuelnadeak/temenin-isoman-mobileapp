@@ -4,6 +4,7 @@ import 'package:temenin_isoman_mobileapp/widgets/custom_drawer.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {
+  static const routeName = '/main-screen';
   const MainScreen({Key? key}) : super(key: key);
 
   @override
