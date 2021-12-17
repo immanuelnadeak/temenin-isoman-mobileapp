@@ -3,6 +3,7 @@ import 'package:temenin_isoman_mobileapp/common/styles.dart';
 import 'package:temenin_isoman_mobileapp/widgets/custom_drawer.dart';
 import 'package:temenin_isoman_mobileapp/widgets/member_card.dart';
 import 'package:temenin_isoman_mobileapp/widgets/module_card.dart';
+export 'package:tips_and_tricks/main.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';

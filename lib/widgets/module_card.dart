@@ -82,7 +82,7 @@ Widget category(BuildContext context) {
               Icons.lightbulb_outline,
               const Color(0xfffa8c73),
               const Color(0xfffa9881),
-              TipsAndTricks.routeName,
+              TipsAndTricksListPage.routeName,
               context,
             ),
           ],

@@ -106,7 +106,7 @@ Widget customDrawer(BuildContext context) {
           onTap: () {
             Navigator.pushNamed(
               context,
-              TipsAndTricks.routeName,
+              TipsAndTricksListPage.routeName,
             );
           },
         ),
