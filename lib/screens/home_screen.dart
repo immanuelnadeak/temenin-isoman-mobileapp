@@ -6,7 +6,6 @@ import 'package:tips_and_tricks/common/styles.dart';
 
 class HomeScreen extends StatelessWidget {
   final ZoomDrawerController zoomDrawerController;
-  static const routeName = '/home-screen';
 
   const HomeScreen({
     Key? key,

@@ -22,6 +22,7 @@ class TemeninIsomanApp extends StatelessWidget {
       ),
       home: const MainScreen(),
       routes: {
+        MainScreen.routeName: (context) => const MainScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         TipsAndTricks.routeName : (context) => const TipsAndTricks(),
       },
