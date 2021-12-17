@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'common/styles.dart';
 import 'models/article.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class TipsAndTricks extends StatelessWidget {
+  static const routeName = '/tips-and-tricks';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const TipsAndTricks({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +23,11 @@ class MyApp extends StatelessWidget {
       routes: {
         TipsAndTricksListPage.routeName: (context) => const TipsAndTricksListPage(),
         ArticleDetailPage.routeName: (context) => ArticleDetailPage(
-              article: ModalRoute.of(context)?.settings.arguments as Article,
-            ),
+          article: ModalRoute.of(context)?.settings.arguments as Article,
+        ),
         ArticleWebView.routeName: (context) => ArticleWebView(
-              url: ModalRoute.of(context)?.settings.arguments as String,
-            ),
+          url: ModalRoute.of(context)?.settings.arguments as String,
+        ),
       },
     );
   }
