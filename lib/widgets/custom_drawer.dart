@@ -90,12 +90,18 @@ Widget customDrawer(BuildContext context) {
           onTap: () {},
         ),
         ListTile(
-          title: const Text("Happy Notes"),
+          title: Text(
+            "Happy Notes",
+            style: AppTheme.myTextTheme.bodyText1,
+          ),
           leading: const Icon(Icons.note_rounded),
           onTap: () {},
         ),
         ListTile(
-          title: const Text("Tips And Tricks"),
+          title: Text(
+            "Tips And Tricks",
+            style: AppTheme.myTextTheme.bodyText1,
+          ),
           leading: const Icon(Icons.lightbulb_outline),
           onTap: () {
             Navigator.pushNamed(
@@ -111,7 +117,10 @@ Widget customDrawer(BuildContext context) {
           thickness: 1.0,
         ),
         ListTile(
-          title: const Text("Login"),
+          title: Text(
+            "Login",
+            style: AppTheme.myTextTheme.bodyText1,
+          ),
           leading: const Icon(Icons.login),
           onTap: () {
             Navigator.pushNamed(
