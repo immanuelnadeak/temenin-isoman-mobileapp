@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tips_and_tricks/common/styles.dart';
+import 'package:temenin_isoman_mobileapp/common/styles.dart';
 
 Widget drawerButton(BuildContext context, String title, IconData icon, String route){
   return ListTile(
     title:  Text(
       title,
-      style: myTextTheme.bodyText1,
+      style: AppTheme.myTextTheme.bodyText1,
     ),
     leading: Icon(icon),
     onTap: () {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:temenin_isoman_mobileapp/common/styles.dart';
+import 'package:temenin_isoman_mobileapp/screens/home_screen.dart';
 import 'package:temenin_isoman_mobileapp/screens/login_screen.dart';
-import 'package:temenin_isoman_mobileapp/screens/main_screen.dart';
 import 'package:tips_and_tricks/main.dart';
 
 Widget customDrawer(BuildContext context) {
   return Drawer(
-    elevation: 0.0,
     child: ListView(
       children: <Widget>[
         DrawerHeader(
@@ -54,7 +53,7 @@ Widget customDrawer(BuildContext context) {
           onTap: () {
             Navigator.pushNamed(
               context,
-              MainScreen.routeName,
+              HomeScreen.routeName,
             );
           },
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:temenin_isoman_mobileapp/screens/home_screen.dart';
 import 'package:temenin_isoman_mobileapp/screens/login_screen.dart';
-import 'package:temenin_isoman_mobileapp/screens/main_screen.dart';
 import 'package:tips_and_tricks/common/styles.dart';
 import 'package:tips_and_tricks/main.dart';
 
@@ -20,9 +20,9 @@ class TemeninIsomanApp extends StatelessWidget {
         primaryColor: primaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MainScreen(),
+      home: const HomeScreen(),
       routes: {
-        MainScreen.routeName: (context) => const MainScreen(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         TipsAndTricks.routeName : (context) => const TipsAndTricks(),
       },

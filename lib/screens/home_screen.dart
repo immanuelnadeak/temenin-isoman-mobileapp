@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:temenin_isoman_mobileapp/common/styles.dart';
+import 'package:temenin_isoman_mobileapp/widgets/custom_drawer.dart';
 import 'package:temenin_isoman_mobileapp/widgets/member_card.dart';
 import 'package:temenin_isoman_mobileapp/widgets/module_card.dart';
-import 'package:tips_and_tricks/common/styles.dart';
 
 class HomeScreen extends StatelessWidget {
-  final ZoomDrawerController zoomDrawerController;
+  static const routeName = '/home-screen';
 
   const HomeScreen({
     Key? key,
-    required this.zoomDrawerController,
   }) : super(key: key);
 
   @override
@@ -19,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Temenin Isoman"),
-          backgroundColor: primaryColor,
+          backgroundColor: AppTheme.primaryColor,
           leading: Builder(
             builder: (context) {
               return IconButton(
@@ -28,12 +27,13 @@ class HomeScreen extends StatelessWidget {
                   size: 30,
                 ),
                 onPressed: () {
-                  zoomDrawerController.toggle!();
+                  Scaffold.of(context).openDrawer();
                 },
               );
             },
           ),
         ),
+        drawer: customDrawer(context),
         body: CustomScrollView(
           slivers: <Widget>[
             SliverList(
