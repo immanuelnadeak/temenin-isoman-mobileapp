@@ -13,21 +13,34 @@ class AddArticlePage extends StatefulWidget {
 
 class _AddArticlePageState extends State<AddArticlePage> {
   late String articleTitle;
-
   late String articleSource;
-
   late String articlePublishedDate;
-
   late String imageUrl;
-
   late String articleUrl;
-
   late String briefDescription;
 
+  DateTime selectedDate = DateTime.now();
+  final TextEditingController _dateController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1990, 1),
+        lastDate: DateTime(2022));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        articlePublishedDate = picked.toString().substring(0,10);
+        _dateController.text = picked.toString().substring(0,10);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    _dateController.text = selectedDate.toString().substring(0,10);
     return SafeArea(
       child: CustomScaffold(
         theTitle: 'Add New Article',
@@ -71,6 +84,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                                 if (value?.isEmpty ?? true) {
                                   return 'Please enter article title';
                                 }
+                                articleTitle = value!;
                               },
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
@@ -98,6 +112,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                                 if (value?.isEmpty ?? true) {
                                   return 'Please enter article source/author';
                                 }
+                                articleSource = value!;
                               },
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
@@ -121,21 +136,23 @@ class _AddArticlePageState extends State<AddArticlePage> {
                               top: 20.00,
                             ),
                             child: TextFormField(
-                              validator: (value) {
-                                if (value?.isEmpty ?? true) {
-                                  return 'Please enter article published date';
-                                }
-                              },
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                focusedBorder: UnderlineInputBorder(
+                              controller: _dateController,
+                              decoration: InputDecoration(
+                                border: const UnderlineInputBorder(),
+                                focusedBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     color: darkSecondaryColor,
                                   ),
                                 ),
                                 labelText: 'Article Publish Date',
-                                labelStyle: TextStyle(
+                                labelStyle: const TextStyle(
                                   color: darkSecondaryColor,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: const Icon(
+                                    Icons.calendar_today_rounded ,
+                                  ),
+                                  onPressed: () => _selectDate(context),
                                 ),
                               ),
                               cursorColor: Colors.black,
@@ -152,6 +169,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                                 if (value?.isEmpty ?? true) {
                                   return 'Please enter image url';
                                 }
+                                imageUrl = value!;
                               },
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
@@ -179,6 +197,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                                 if (value?.isEmpty ?? true) {
                                   return 'Please enter article url';
                                 }
+                                articleUrl = value!;
                               },
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
@@ -207,6 +226,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                                 if (value?.isEmpty ?? true) {
                                   return 'Please enter article brief description';
                                 }
+                                briefDescription = value!;
                               },
                               minLines: 5,
                               maxLines: 10,
@@ -245,6 +265,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                                 content: Text(
                                   'New Article Successfully Added(Feature Coming Soon)',
                                 ),
+
                               ),
                             );
                             Navigator.of(context).pop();
