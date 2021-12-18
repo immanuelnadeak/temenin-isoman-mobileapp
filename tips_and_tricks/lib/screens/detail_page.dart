@@ -21,9 +21,9 @@ class ArticleDetailPage extends StatelessWidget {
               tag: article.imageUrl,
               child: Image.network(
                 article.imageUrl,
-                // width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * .45,
-                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * .41,
+                fit: BoxFit.cover,
               ),
             ),
             DraggableScrollableSheet(

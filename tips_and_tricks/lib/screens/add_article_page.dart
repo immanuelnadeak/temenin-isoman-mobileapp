@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tips_and_tricks/common/styles.dart';
+import 'package:tips_and_tricks/methods/add_data.dart';
+import 'package:tips_and_tricks/models/article.dart';
 import 'package:tips_and_tricks/widgets/custom_scaffold.dart';
+import 'list_page.dart';
 
 class AddArticlePage extends StatefulWidget {
   static const routeName = '/add_article';
@@ -32,15 +35,16 @@ class _AddArticlePageState extends State<AddArticlePage> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        articlePublishedDate = picked.toString().substring(0,10);
-        _dateController.text = picked.toString().substring(0,10);
+        articlePublishedDate = picked.toString().substring(0, 10);
+        _dateController.text = picked.toString().substring(0, 10);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    _dateController.text = selectedDate.toString().substring(0,10);
+    _dateController.text = selectedDate.toString().substring(0, 10);
+    articlePublishedDate = selectedDate.toString().substring(0, 10);
     return SafeArea(
       child: CustomScaffold(
         theTitle: 'Add New Article',
@@ -150,7 +154,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                                 ),
                                 suffixIcon: IconButton(
                                   icon: const Icon(
-                                    Icons.calendar_today_rounded ,
+                                    Icons.calendar_today_rounded,
                                   ),
                                   onPressed: () => _selectDate(context),
                                 ),
@@ -260,15 +264,27 @@ class _AddArticlePageState extends State<AddArticlePage> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState?.validate() ?? false) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  'New Article Successfully Added(Feature Coming Soon)',
-                                ),
-
-                              ),
+                            Article newArticle = Article(
+                              title: articleTitle,
+                              source: articleSource,
+                              publishedDate: articlePublishedDate,
+                              imageUrl: imageUrl,
+                              articleUrl: articleUrl,
+                              briefDescription: briefDescription,
                             );
-                            Navigator.of(context).pop();
+                            addNewArtikel(newArticle).then((value) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    value,
+                                  ),
+                                ),
+                              );
+                            });
+                            Navigator.pushNamed(
+                              context,
+                              TipsAndTricksListPage.routeName,
+                            );
                           }
                         },
                         child: const Padding(

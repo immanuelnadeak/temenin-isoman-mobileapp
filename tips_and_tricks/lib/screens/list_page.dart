@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:temenin_isoman_mobileapp/widgets/custom_drawer.dart';
 import 'package:tips_and_tricks/common/styles.dart';
+import 'package:tips_and_tricks/methods/get_data.dart';
+import 'package:tips_and_tricks/models/article.dart';
 import 'package:tips_and_tricks/widgets/article_items.dart';
-import 'package:tips_and_tricks/dummy_data.dart';
 import 'package:tips_and_tricks/screens/add_article_page.dart';
 
-class TipsAndTricksListPage extends StatelessWidget {
+class TipsAndTricksListPage extends StatefulWidget {
   static const routeName = '/tips-and-tricks';
 
   const TipsAndTricksListPage({Key? key}) : super(key: key);
+
+  @override
+  State<TipsAndTricksListPage> createState() => _TipsAndTricksListPageState();
+}
+
+class _TipsAndTricksListPageState extends State<TipsAndTricksListPage> {
+  String query = "";
 
   @override
   Widget build(BuildContext context) {
@@ -55,47 +63,59 @@ class TipsAndTricksListPage extends StatelessWidget {
         drawer: customDrawer(context),
         body: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(150),
-                ),
-                elevation: 3,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width - 50,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.search_rounded,
-                        color: darkSecondaryColor,
-                      ),
-                      hintText: 'Search...',
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical: 10.0,
-                        horizontal: 20.0,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(32.0),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: secondaryColor,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(32.0),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(150),
+                  ),
+                  elevation: 3,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: TextField(
+                      onChanged: (value) => {
+                        if (value != '')
+                          {
+                            setState(
+                              () {
+                                query = value;
+                              },
+                            )
+                          }
+                      },
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.search_rounded,
                           color: darkSecondaryColor,
-                          width: 2.0,
                         ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(32.0),
+                        hintText: 'Search...',
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 10.0,
+                          horizontal: 20.0,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(32.0),
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: secondaryColor,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(32.0),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: darkSecondaryColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(32.0),
+                          ),
                         ),
                       ),
                     ),
@@ -104,13 +124,25 @@ class TipsAndTricksListPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: listArticles.length,
-                itemBuilder: (context, index) {
-                  return buildArticleItem(
-                    context,
-                    listArticles[index],
-                  );
+              child: FutureBuilder<List<Article>>(
+                future: fetchArtikel(query),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final List<Article>? article = snapshot.data;
+                    return ListView.builder(
+                      itemCount: article?.length,
+                      itemBuilder: (context, index) {
+                        return buildArticleItem(
+                          context,
+                          article![index],
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
                 },
               ),
             ),
