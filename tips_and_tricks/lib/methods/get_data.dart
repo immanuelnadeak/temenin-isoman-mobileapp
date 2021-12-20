@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:tips_and_tricks/models/article.dart';
 
 Future<List<Article>> fetchArtikel(String query) async {
-  var url = Uri.parse('http://10.0.2.2:8000/tips-and-tricks/search-json?q=$query');
+  var url = Uri.parse('https://temenin-isoman.herokuapp.com/tips-and-tricks/search-json?q=$query');
   var response = await http.get(
     url,
     headers: {
