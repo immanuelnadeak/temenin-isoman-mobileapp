@@ -5,6 +5,7 @@ import 'package:tips_and_tricks/methods/get_data.dart';
 import 'package:tips_and_tricks/models/article.dart';
 import 'package:tips_and_tricks/widgets/article_items.dart';
 import 'package:tips_and_tricks/screens/add_article_page.dart';
+import 'package:tips_and_tricks/widgets/state_info.dart';
 
 class TipsAndTricksListPage extends StatefulWidget {
   static const routeName = '/tips-and-tricks';
@@ -129,18 +130,26 @@ class _TipsAndTricksListPageState extends State<TipsAndTricksListPage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     final List<Article>? article = snapshot.data;
-                    return ListView.builder(
-                      itemCount: article?.length,
-                      itemBuilder: (context, index) {
-                        return buildArticleItem(
-                          context,
-                          article![index],
-                        );
-                      },
-                    );
+                    if (article?.isNotEmpty ?? false) {
+                      return ListView.builder(
+                        itemCount: article?.length,
+                        itemBuilder: (context, index) {
+                          return buildArticleItem(
+                            context,
+                            article![index],
+                          );
+                        },
+                      );
+                    } else {
+                      return noData(
+                        Icons.search_off_rounded,
+                        "No article available for keywords $query",
+                      );
+                    }
                   } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return noData(
+                      Icons.clear_rounded,
+                      "No article available",
                     );
                   }
                 },

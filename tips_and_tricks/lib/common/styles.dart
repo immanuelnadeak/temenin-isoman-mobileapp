@@ -33,7 +33,6 @@ final TextTheme myTextTheme = TextTheme(
   headline5: GoogleFonts.oswald(
     fontSize: 23,
     fontWeight: FontWeight.w400,
-    color: Colors.white,
   ),
   headline6: GoogleFonts.oswald(
     fontSize: 19,
