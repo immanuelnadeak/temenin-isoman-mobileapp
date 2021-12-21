@@ -7,7 +7,7 @@ Future<List<Article>> fetchArtikel(String query) async {
   var response = await http.get(
     url,
     headers: {
-      "Access-Control_Allow_Origin": "*",
+      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
   );
@@ -19,5 +19,6 @@ Future<List<Article>> fetchArtikel(String query) async {
       artikel.add(Article.fromJson(d));
     }
   }
+
   return artikel;
 }
