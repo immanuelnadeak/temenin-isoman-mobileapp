@@ -22,7 +22,7 @@ class ArticleDetailPage extends StatelessWidget {
               child: Image.network(
                 article.imageUrl,
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * .41,
+                height: MediaQuery.of(context).size.height * .42,
                 fit: BoxFit.cover,
               ),
             ),
@@ -104,7 +104,22 @@ class ArticleDetailPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                BackButton(color: Theme.of(context).primaryColor),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        100,
+                      ),
+                    ),
+                    child: Container(
+                      color: darkSecondaryColor,
+                      child: const BackButton(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],

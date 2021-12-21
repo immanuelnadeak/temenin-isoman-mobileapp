@@ -141,15 +141,15 @@ class _TipsAndTricksListPageState extends State<TipsAndTricksListPage> {
                         },
                       );
                     } else {
-                      return noData(
-                        Icons.search_off_rounded,
+                      return stateInfo(
                         "No article available for keywords $query",
+                        true,
                       );
                     }
                   } else {
-                    return noData(
-                      Icons.clear_rounded,
-                      "No article available",
+                    return stateInfo(
+                      "Load the articles",
+                      false,
                     );
                   }
                 },

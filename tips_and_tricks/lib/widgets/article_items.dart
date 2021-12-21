@@ -19,10 +19,29 @@ Widget buildArticleItem(BuildContext context, Article article) {
             borderRadius: const BorderRadius.all(
               Radius.circular(10),
             ),
-            child: Image.network(
-              article.imageUrl,
+            child: SizedBox(
+              height: 100,
               width: 100,
-              fit: BoxFit.cover,
+              child: Image.network(
+                article.imageUrl,
+                fit: BoxFit.cover,
+                loadingBuilder: (
+                  BuildContext context,
+                  Widget child,
+                  ImageChunkEvent? loadingProgress,
+                ) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: darkSecondaryColor,
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),

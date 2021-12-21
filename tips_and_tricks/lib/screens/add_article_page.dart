@@ -28,10 +28,29 @@ class _AddArticlePageState extends State<AddArticlePage> {
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(1990, 1),
-        lastDate: DateTime(2022));
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(1990, 1),
+      lastDate: DateTime(2023),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: primaryColor, // header background color
+              onPrimary: Colors.black, // header text color
+              onSurface: darkSecondaryColor, // body text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: Colors.red, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
