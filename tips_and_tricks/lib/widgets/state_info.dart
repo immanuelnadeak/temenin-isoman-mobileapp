@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tips_and_tricks/common/styles.dart';
 
-Widget stateInfo(String message, bool noData) {
+Widget stateInfo(String message, bool noData, IconData icon) {
   return Center(
     child: SingleChildScrollView(
       child: Column(
         children: [
           noData
-              ? const Icon(
-                  Icons.search_off_rounded,
+              ? Icon(
+                  icon,
                   size: 100,
                   color: secondaryColor,
                 )

@@ -14,7 +14,7 @@ Widget buildArticleItem(BuildContext context, Article article) {
           horizontal: 20.0,
         ),
         leading: Hero(
-          tag: article.imageUrl,
+          tag: article.title,
           child: ClipRRect(
             borderRadius: const BorderRadius.all(
               Radius.circular(10),
@@ -25,6 +25,16 @@ Widget buildArticleItem(BuildContext context, Article article) {
               child: Image.network(
                 article.imageUrl,
                 fit: BoxFit.cover,
+                errorBuilder: (
+                  BuildContext context,
+                  Object exception,
+                  StackTrace? stackTrace,
+                ) {
+                  return Image.network(
+                    "https://images.unsplash.com/photo-1607077644571-11791eec3c34?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+                    fit: BoxFit.cover,
+                  );
+                },
                 loadingBuilder: (
                   BuildContext context,
                   Widget child,

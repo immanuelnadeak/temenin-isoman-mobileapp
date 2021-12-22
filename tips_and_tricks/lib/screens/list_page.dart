@@ -144,12 +144,20 @@ class _TipsAndTricksListPageState extends State<TipsAndTricksListPage> {
                       return stateInfo(
                         "No article available for keywords $query",
                         true,
+                        Icons.search_off_rounded,
                       );
                     }
+                  } else if (snapshot.hasError) {
+                    return stateInfo(
+                      snapshot.error.toString(),
+                      true,
+                      Icons.close,
+                    );
                   } else {
                     return stateInfo(
                       "Load the articles",
                       false,
+                      Icons.search_off_rounded,
                     );
                   }
                 },

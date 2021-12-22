@@ -22,8 +22,20 @@ class ArticleDetailPage extends StatelessWidget {
               child: Image.network(
                 article.imageUrl,
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * .42,
+                height: MediaQuery.of(context).size.height * .43,
                 fit: BoxFit.cover,
+                errorBuilder: (
+                  BuildContext context,
+                  Object exception,
+                  StackTrace? stackTrace,
+                ) {
+                  return Image.network(
+                    "https://images.unsplash.com/photo-1607077644571-11791eec3c34?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * .43,
+                  );
+                },
               ),
             ),
             DraggableScrollableSheet(
