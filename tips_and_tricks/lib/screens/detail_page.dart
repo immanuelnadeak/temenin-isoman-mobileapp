@@ -18,7 +18,7 @@ class ArticleDetailPage extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Hero(
-              tag: article.imageUrl,
+              tag: article.title,
               child: Image.network(
                 article.imageUrl,
                 width: MediaQuery.of(context).size.width,
