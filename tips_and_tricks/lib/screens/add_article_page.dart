@@ -50,7 +50,6 @@ class _AddArticlePageState extends State<AddArticlePage> {
         );
       },
     );
-
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
@@ -58,6 +57,49 @@ class _AddArticlePageState extends State<AddArticlePage> {
         _dateController.text = picked.toString().substring(0, 10);
       });
     }
+  }
+
+  Widget customForm(String label) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 35.00,
+        right: 35.00,
+        top: 20.00,
+      ),
+      child: TextFormField(
+        validator: (value) {
+          if (value?.isEmpty ?? true) {
+            String temp = label.toLowerCase();
+            return 'Please enter article $temp';
+          }
+          if (label == "Title") {
+            articleTitle = value!;
+          } else if (label == "Source/Author") {
+            articleSource = value!;
+          } else if (label == "Image URL") {
+            imageUrl = value!;
+          } else if (label == "URL") {
+            articleUrl = value!;
+          } else if (label == "Brief Description") {
+            briefDescription = value!;
+          }
+        },
+        style: myTextTheme.bodyText1,
+        decoration: InputDecoration(
+          border: const UnderlineInputBorder(),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: darkSecondaryColor,
+            ),
+          ),
+          labelText: label,
+          labelStyle: const TextStyle(
+            color: darkSecondaryColor,
+          ),
+        ),
+        cursorColor: Colors.black,
+      ),
+    );
   }
 
   @override
@@ -96,62 +138,8 @@ class _AddArticlePageState extends State<AddArticlePage> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 35.00,
-                              right: 35.00,
-                              top: 20.00,
-                            ),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value?.isEmpty ?? true) {
-                                  return 'Please enter article title';
-                                }
-                                articleTitle = value!;
-                              },
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: darkSecondaryColor,
-                                  ),
-                                ),
-                                labelText: 'Title',
-                                labelStyle: TextStyle(
-                                  color: darkSecondaryColor,
-                                ),
-                              ),
-                              cursorColor: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 35.00,
-                              right: 35.00,
-                              top: 20.00,
-                            ),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value?.isEmpty ?? true) {
-                                  return 'Please enter article source/author';
-                                }
-                                articleSource = value!;
-                              },
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: darkSecondaryColor,
-                                  ),
-                                ),
-                                labelText: 'Article Source/Author',
-                                labelStyle: TextStyle(
-                                  color: darkSecondaryColor,
-                                ),
-                              ),
-                              cursorColor: Colors.black,
-                            ),
-                          ),
+                          customForm("Title"),
+                          customForm("Source/Author"),
                           Padding(
                             padding: const EdgeInsets.only(
                               left: 35.00,
@@ -160,6 +148,7 @@ class _AddArticlePageState extends State<AddArticlePage> {
                             ),
                             child: TextFormField(
                               controller: _dateController,
+                              style: myTextTheme.bodyText1,
                               decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
                                 focusedBorder: const UnderlineInputBorder(
@@ -181,92 +170,11 @@ class _AddArticlePageState extends State<AddArticlePage> {
                               cursorColor: Colors.black,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 35.00,
-                              right: 35.00,
-                              top: 20.00,
-                            ),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value?.isEmpty ?? true) {
-                                  return 'Please enter image url';
-                                }
-                                imageUrl = value!;
-                              },
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: darkSecondaryColor,
-                                  ),
-                                ),
-                                labelText: 'Image URL',
-                                labelStyle: TextStyle(
-                                  color: darkSecondaryColor,
-                                ),
-                              ),
-                              cursorColor: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 35.00,
-                              right: 35.00,
-                              top: 20.00,
-                            ),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value?.isEmpty ?? true) {
-                                  return 'Please enter article url';
-                                }
-                                articleUrl = value!;
-                              },
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: darkSecondaryColor,
-                                  ),
-                                ),
-                                labelText: 'Article URL',
-                                labelStyle: TextStyle(
-                                  color: darkSecondaryColor,
-                                ),
-                              ),
-                              cursorColor: Colors.black,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 35.00,
-                              right: 35.00,
-                              top: 20.00,
-                              bottom: 20.00,
-                            ),
-                            child: TextFormField(
-                              validator: (value) {
-                                if (value?.isEmpty ?? true) {
-                                  return 'Please enter article brief description';
-                                }
-                                briefDescription = value!;
-                              },
-                              minLines: 5,
-                              maxLines: 10,
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: darkSecondaryColor,
-                                  ),
-                                ),
-                                labelText: 'Article Brief Description',
-                                labelStyle: TextStyle(
-                                  color: darkSecondaryColor,
-                                ),
-                              ),
-                              cursorColor: Colors.black,
-                            ),
+                          customForm("Image URL"),
+                          customForm("URL"),
+                          customForm("Brief Description"),
+                          const SizedBox(
+                            height: 30,
                           ),
                         ],
                       ),
@@ -306,16 +214,14 @@ class _AddArticlePageState extends State<AddArticlePage> {
                             );
                           }
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.only(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
                             right: 20.0,
                             left: 20.0,
                           ),
                           child: Text(
                             'Submit',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: myTextTheme.bodyText2,
                           ),
                         ),
                       ),

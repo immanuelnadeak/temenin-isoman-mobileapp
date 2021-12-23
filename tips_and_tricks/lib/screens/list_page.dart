@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:temenin_isoman_mobileapp/models/user.dart';
+import 'package:temenin_isoman_mobileapp/utils/user.dart';
 import 'package:temenin_isoman_mobileapp/widgets/custom_drawer.dart';
 import 'package:tips_and_tricks/common/styles.dart';
 import 'package:tips_and_tricks/methods/get_data.dart';
@@ -18,34 +20,51 @@ class TipsAndTricksListPage extends StatefulWidget {
 
 class _TipsAndTricksListPageState extends State<TipsAndTricksListPage> {
   String query = "";
+  late Future<User?> futureUser;
+
+  @override
+  void initState() {
+    super.initState();
+    futureUser = fetchUser();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: darkSecondaryColor,
-          title: Center(
-            child: Text(
-              'COVID-19 Tips And Tricks',
-              style: myTextTheme.headline6,
-            ),
+          title: Text(
+            'COVID-19 Tips And Tricks',
+            style: myTextTheme.headline6,
           ),
           actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.add,
-              ),
-              color: Colors.white,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const AddArticlePage(),
-                  ),
-                );
-                // do something
+            FutureBuilder(
+              future: futureUser,
+              builder: (context, snapshot) {
+                if (snapshot.hasData &&
+                    ((snapshot.data as User)
+                            .roles
+                            .contains("fasilitas_kesehatan") ||
+                        (snapshot.data as User).roles.contains("admin"))) {
+                  return IconButton(
+                    icon: const Icon(
+                      Icons.add,
+                    ),
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const AddArticlePage(),
+                        ),
+                      );
+                    },
+                  );
+                }
+                return const Text("");
               },
-            )
+            ),
           ],
           leading: Builder(
             builder: (context) {
@@ -61,7 +80,7 @@ class _TipsAndTricksListPageState extends State<TipsAndTricksListPage> {
             },
           ),
         ),
-        drawer: customDrawer(context),
+        drawer: customDrawer(context, futureUser),
         body: Column(
           children: <Widget>[
             Center(

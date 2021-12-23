@@ -49,7 +49,7 @@ class ArticleDetailPage extends StatelessWidget {
                     left: 19,
                     right: 19,
                     top: 16,
-                  ), //symmetric(horizontal: 19, vertical: 16),
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),
@@ -64,7 +64,7 @@ class ArticleDetailPage extends StatelessWidget {
                         offset: const Offset(
                           0,
                           2,
-                        ), // changes position of shadow
+                        ),
                       ),
                     ],
                   ),
@@ -82,13 +82,41 @@ class ArticleDetailPage extends StatelessWidget {
                           ),
                         ),
                         const Divider(color: Colors.grey),
-                        Text('Published Date: ${article.publishedDate}'),
-                        const SizedBox(height: 10),
-                        Text('Author: ${article.source}'),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.person,
+                              color: darkSecondaryColor,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Author: ${article.source}',
+                                style: myTextTheme.caption,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.calendar_today_rounded,
+                              color: darkSecondaryColor,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Published Date: ${article.publishedDate}',
+                                style: myTextTheme.caption,
+                              ),
+                            ),
+                          ],
+                        ),
                         const Divider(color: Colors.grey),
                         Text(
                           article.briefDescription,
                           style: const TextStyle(fontSize: 16),
+                          textAlign: TextAlign.justify,
                         ),
                         const SizedBox(height: 10),
                         ElevatedButton(
