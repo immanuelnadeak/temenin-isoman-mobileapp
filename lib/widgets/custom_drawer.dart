@@ -64,98 +64,45 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
             ),
           ),
         ),
-        const SizedBox(
+        Container(
+          color: AppTheme.primaryColor,
           height: 20,
         ),
-        ListTile(
-          title: Text(
-            "Home Page",
-            style: AppTheme.myTextTheme.bodyText1,
-          ),
-          leading: const Icon(
-            Icons.home,
-            color: AppTheme.darkColor,
-          ),
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              HomeScreen.routeName,
-            );
-          },
+        _drawerTile(context, "Home Page", Icons.home, HomeScreen.routeName),
+        _drawerTile(context, "Bed Capacity", Icons.bed, HomeScreen.routeName),
+        _drawerTile(
+          context,
+          "Checklist",
+          Icons.checklist,
+          HomeScreen.routeName,
         ),
-        ListTile(
-          title: Text(
-            "Bed Capacity",
-            style: AppTheme.myTextTheme.bodyText1,
-          ),
-          leading: const Icon(
-            Icons.bed,
-            color: AppTheme.darkColor,
-          ),
-          onTap: () {},
+        _drawerTile(
+          context,
+          "Deteksi Mandiri",
+          Icons.sick_outlined,
+          HomeScreen.routeName,
         ),
-        ListTile(
-          title: Text(
-            "Checklist",
-            style: AppTheme.myTextTheme.bodyText1,
-          ),
-          leading: const Icon(
-            Icons.checklist,
-            color: AppTheme.darkColor,
-          ),
-          onTap: () {},
+        _drawerTile(
+          context,
+          "Emergency Contact",
+          Icons.warning,
+          HomeScreen.routeName,
         ),
-        ListTile(
-          title: Text(
-            "Deteksi Mandiri",
-            style: AppTheme.myTextTheme.bodyText1,
-          ),
-          leading: const Icon(
-            Icons.sick_outlined,
-            color: AppTheme.darkColor,
-          ),
-          onTap: () {},
+        _drawerTile(
+          context,
+          "Happy Notes",
+          Icons.note_rounded,
+          HomeScreen.routeName,
         ),
-        ListTile(
-          title: Text(
-            "Emergency Contact",
-            style: AppTheme.myTextTheme.bodyText1,
-          ),
-          leading: const Icon(
-            Icons.warning,
-            color: AppTheme.darkColor,
-          ),
-          onTap: () {},
+        _drawerTile(
+          context,
+          "Tips And Tricks",
+          Icons.lightbulb_outline,
+          TipsAndTricksListPage.routeName,
         ),
-        ListTile(
-          title: Text(
-            "Happy Notes",
-            style: AppTheme.myTextTheme.bodyText1,
-          ),
-          leading: const Icon(
-            Icons.note_rounded,
-            color: AppTheme.darkColor,
-          ),
-          onTap: () {},
-        ),
-        ListTile(
-          title: Text(
-            "Tips And Tricks",
-            style: AppTheme.myTextTheme.bodyText1,
-          ),
-          leading: const Icon(
-            Icons.lightbulb_outline,
-            color: AppTheme.darkColor,
-          ),
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              TipsAndTricksListPage.routeName,
-            );
-          },
-        ),
-        const SizedBox(
-          height: 30,
+        Container(
+          color: AppTheme.primaryColor,
+          height: 20,
         ),
         const Divider(
           thickness: 1.0,
@@ -221,6 +168,35 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
           },
         ),
       ],
+    ),
+  );
+}
+
+Widget _drawerTile(
+  BuildContext context,
+  String text,
+  IconData icon,
+  String route,
+) {
+  return Container(
+    color: AppTheme.primaryColor,
+    child: ListTile(
+      title: Text(
+        text,
+        style: AppTheme.myTextTheme.bodyText1?.apply(
+          color: Colors.white,
+        ),
+      ),
+      leading: Icon(
+        icon,
+        color: Colors.white,
+      ),
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          HomeScreen.routeName,
+        );
+      },
     ),
   );
 }
