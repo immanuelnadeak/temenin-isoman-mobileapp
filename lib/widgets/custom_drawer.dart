@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:temenin_isoman_mobileapp/models/user.dart';
 import 'package:temenin_isoman_mobileapp/utils/session.dart';
-
 import 'package:temenin_isoman_mobileapp/common/styles.dart';
 import 'package:temenin_isoman_mobileapp/screens/home_screen.dart';
 import 'package:temenin_isoman_mobileapp/screens/login_screen.dart';
@@ -52,10 +50,13 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
                       ),
                     ),
                   ),
-                  Center(
-                    child: Text(
-                      'Temenin Isoman',
-                      style: AppTheme.myTextTheme.headline5,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        'Temenin Isoman',
+                        style: AppTheme.myTextTheme.headline5,
+                      ),
                     ),
                   ),
                 ],
@@ -64,14 +65,17 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         ListTile(
           title: Text(
             "Home Page",
             style: AppTheme.myTextTheme.bodyText1,
           ),
-          leading: const Icon(Icons.home),
+          leading: const Icon(
+            Icons.home,
+            color: AppTheme.darkColor,
+          ),
           onTap: () {
             Navigator.pushNamed(
               context,
@@ -84,7 +88,10 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
             "Bed Capacity",
             style: AppTheme.myTextTheme.bodyText1,
           ),
-          leading: const Icon(Icons.bed),
+          leading: const Icon(
+            Icons.bed,
+            color: AppTheme.darkColor,
+          ),
           onTap: () {},
         ),
         ListTile(
@@ -92,7 +99,10 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
             "Checklist",
             style: AppTheme.myTextTheme.bodyText1,
           ),
-          leading: const Icon(Icons.checklist),
+          leading: const Icon(
+            Icons.checklist,
+            color: AppTheme.darkColor,
+          ),
           onTap: () {},
         ),
         ListTile(
@@ -100,7 +110,10 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
             "Deteksi Mandiri",
             style: AppTheme.myTextTheme.bodyText1,
           ),
-          leading: const Icon(Icons.sick_outlined),
+          leading: const Icon(
+            Icons.sick_outlined,
+            color: AppTheme.darkColor,
+          ),
           onTap: () {},
         ),
         ListTile(
@@ -108,7 +121,10 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
             "Emergency Contact",
             style: AppTheme.myTextTheme.bodyText1,
           ),
-          leading: const Icon(Icons.warning),
+          leading: const Icon(
+            Icons.warning,
+            color: AppTheme.darkColor,
+          ),
           onTap: () {},
         ),
         ListTile(
@@ -116,7 +132,10 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
             "Happy Notes",
             style: AppTheme.myTextTheme.bodyText1,
           ),
-          leading: const Icon(Icons.note_rounded),
+          leading: const Icon(
+            Icons.note_rounded,
+            color: AppTheme.darkColor,
+          ),
           onTap: () {},
         ),
         ListTile(
@@ -124,7 +143,10 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
             "Tips And Tricks",
             style: AppTheme.myTextTheme.bodyText1,
           ),
-          leading: const Icon(Icons.lightbulb_outline),
+          leading: const Icon(
+            Icons.lightbulb_outline,
+            color: AppTheme.darkColor,
+          ),
           onTap: () {
             Navigator.pushNamed(
               context,
@@ -149,14 +171,20 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
                       snapshot.data!.username,
                       style: AppTheme.myTextTheme.bodyText1,
                     ),
-                    leading: const Icon(Icons.person),
+                    leading: const Icon(
+                      Icons.person,
+                      color: AppTheme.darkColor,
+                    ),
                   ),
                   ListTile(
                     title: Text(
                       "Log out",
                       style: AppTheme.myTextTheme.bodyText1,
                     ),
-                    leading: const Icon(Icons.power_settings_new),
+                    leading: const Icon(
+                      Icons.power_settings_new,
+                      color: AppTheme.darkColor,
+                    ),
                     onTap: () => logout(),
                   ),
                 ],
@@ -168,7 +196,10 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
                   "Login",
                   style: AppTheme.myTextTheme.bodyText1,
                 ),
-                leading: const Icon(Icons.login),
+                leading: const Icon(
+                  Icons.login,
+                  color: AppTheme.darkColor,
+                ),
                 onTap: () {
                   Navigator.pushNamed(
                     context,
@@ -182,7 +213,9 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
                   "Loading user...",
                   style: AppTheme.myTextTheme.bodyText1,
                 ),
-                leading: const CircularProgressIndicator(),
+                leading: const CircularProgressIndicator(
+                  color: AppTheme.darkColor,
+                ),
               );
             }
           },
