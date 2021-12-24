@@ -29,14 +29,6 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
     child: ListView(
       children: <Widget>[
         DrawerHeader(
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: AppTheme.primaryColor,
-                width: 1.0,
-              ),
-            ),
-          ),
           child: SingleChildScrollView(
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
@@ -120,16 +112,16 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
         Container(
           height: 20,
         ),
-        const Divider(
-          thickness: 1.5,
-          color: AppTheme.primaryColor,
-        ),
         FutureBuilder<User?>(
           future: futureUser,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Column(
                 children: [
+                  const Divider(
+                    thickness: 1.5,
+                    color: AppTheme.primaryColor,
+                  ),
                   ListTile(
                     title: Text(
                       snapshot.data!.username,
@@ -137,39 +129,49 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
                     ),
                     leading: const Icon(
                       Icons.person,
-                      color: AppTheme.darkColor,
+                      color: AppTheme.primaryColor,
                     ),
                   ),
-                  ListTile(
-                    title: Text(
-                      "Log out",
-                      style: AppTheme.myTextTheme.bodyText1,
+                  Container(
+                    color: AppTheme.primaryColor,
+                    child: ListTile(
+                      title: Text(
+                        "Log out",
+                        style: AppTheme.myTextTheme.bodyText1?.apply(
+                          color: Colors.white,
+                        ),
+                      ),
+                      leading: const Icon(
+                        Icons.power_settings_new,
+                        color: Colors.white,
+                      ),
+                      onTap: () => logout(),
                     ),
-                    leading: const Icon(
-                      Icons.power_settings_new,
-                      color: AppTheme.darkColor,
-                    ),
-                    onTap: () => logout(),
                   ),
                 ],
               );
             } else if (snapshot.hasError ||
                 snapshot.connectionState == ConnectionState.done) {
-              return ListTile(
-                title: Text(
-                  "Login",
-                  style: AppTheme.myTextTheme.bodyText1,
+              return Container(
+                color: AppTheme.primaryColor,
+                child: ListTile(
+                  title: Text(
+                    "Login",
+                    style: AppTheme.myTextTheme.bodyText1?.apply(
+                      color: Colors.white,
+                    ),
+                  ),
+                  leading: const Icon(
+                    Icons.login,
+                    color: Colors.white,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      LoginScreen.routeName,
+                    );
+                  },
                 ),
-                leading: const Icon(
-                  Icons.login,
-                  color: AppTheme.darkColor,
-                ),
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    LoginScreen.routeName,
-                  );
-                },
               );
             } else {
               return ListTile(
@@ -178,7 +180,7 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
                   style: AppTheme.myTextTheme.bodyText1,
                 ),
                 leading: const CircularProgressIndicator(
-                  color: AppTheme.darkColor,
+                  color: AppTheme.primaryColor,
                 ),
               );
             }
@@ -195,25 +197,19 @@ Widget _drawerTile(
   IconData icon,
   String route,
 ) {
-  return Padding(
-    padding: const EdgeInsets.only(
-      left: 8.0,
-      right: 8.0,
+  return ListTile(
+    title: Text(
+      text,
     ),
-    child: ListTile(
-      title: Text(
-        text,
-      ),
-      leading: Icon(
-        icon,
-        color: AppTheme.primaryColor,
-      ),
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          route,
-        );
-      },
+    leading: Icon(
+      icon,
+      color: AppTheme.primaryColor,
     ),
+    onTap: () {
+      Navigator.pushNamed(
+        context,
+        route,
+      );
+    },
   );
 }
