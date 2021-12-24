@@ -29,6 +29,14 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
     child: ListView(
       children: <Widget>[
         DrawerHeader(
+          decoration: const BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: AppTheme.primaryColor,
+                width: 1.0,
+              ),
+            ),
+          ),
           child: SingleChildScrollView(
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
@@ -65,11 +73,20 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
           ),
         ),
         Container(
-          color: AppTheme.primaryColor,
           height: 20,
         ),
-        _drawerTile(context, "Home Page", Icons.home, HomeScreen.routeName),
-        _drawerTile(context, "Bed Capacity", Icons.bed, HomeScreen.routeName),
+        _drawerTile(
+          context,
+          "Home Page",
+          Icons.home,
+          HomeScreen.routeName,
+        ),
+        _drawerTile(
+          context,
+          "Bed Capacity",
+          Icons.bed,
+          HomeScreen.routeName,
+        ),
         _drawerTile(
           context,
           "Checklist",
@@ -101,11 +118,11 @@ Widget customDrawer(BuildContext context, Future<User?> futureUser) {
           TipsAndTricksListPage.routeName,
         ),
         Container(
-          color: AppTheme.primaryColor,
           height: 20,
         ),
         const Divider(
-          thickness: 1.0,
+          thickness: 1.5,
+          color: AppTheme.primaryColor,
         ),
         FutureBuilder<User?>(
           future: futureUser,
@@ -178,23 +195,23 @@ Widget _drawerTile(
   IconData icon,
   String route,
 ) {
-  return Container(
-    color: AppTheme.primaryColor,
+  return Padding(
+    padding: const EdgeInsets.only(
+      left: 8.0,
+      right: 8.0,
+    ),
     child: ListTile(
       title: Text(
         text,
-        style: AppTheme.myTextTheme.bodyText1?.apply(
-          color: Colors.white,
-        ),
       ),
       leading: Icon(
         icon,
-        color: Colors.white,
+        color: AppTheme.primaryColor,
       ),
       onTap: () {
         Navigator.pushNamed(
           context,
-          HomeScreen.routeName,
+          route,
         );
       },
     ),
