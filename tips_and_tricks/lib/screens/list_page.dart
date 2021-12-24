@@ -54,10 +54,9 @@ class _TipsAndTricksListPageState extends State<TipsAndTricksListPage> {
                     ),
                     color: Colors.white,
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const AddArticlePage(),
-                        ),
+                      Navigator.pushNamed(
+                        context,
+                        AddArticlePage.routeName,
                       );
                     },
                   );
